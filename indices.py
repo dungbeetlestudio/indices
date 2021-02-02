@@ -10,8 +10,9 @@ from flask_cors import CORS
 
 import indices_db as db
 
-app = Flask(__name__,'')
+app = Flask(__name__,'',static_folder='web/dist')
 CORS(app,send_wildcard=True)
+
 
 @app.route('/indices-realtime')
 def status():
@@ -24,6 +25,6 @@ def status():
         print(e)
     return { 'val':data, 'err':None }
 
-print('http://localhost:8888/indices-realtime')
+print('http://dungbeetles.xyz:8888/indices-realtime')
 http_server = pywsgi.WSGIServer(('0.0.0.0', 8888), app)
 http_server.serve_forever()
