@@ -6,8 +6,12 @@ import os
 from datetime import datetime
 from flask import Flask, abort, redirect, request, url_for
 from gevent import pywsgi
+from flask_cors import CORS
+
+import indices_db as db
 
 app = Flask(__name__,'')
+CORS(app,send_wildcard=True)
 
 @app.route('/indices-realtime')
 def status():
