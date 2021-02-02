@@ -1,43 +1,49 @@
 <template>
-  <div class="hello">
-    <canvas id="myChart1"></canvas>
+  <div class="home">
+    <canvas id="indices" ></canvas>
   </div>
 </template>
 
 <script>
+// @ is an alias to /src
 import Chart from "chart.js";
 import requests from "axios";
 
 function getRandomColor() {
   var letters = "0123456789ABCDEF".split("");
   var color = "#";
-  for (var i = 0; i < 6; i++) {
+  for (var i = 0; i < 6; i++)  {
     color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
 }
 
 export default {
+  name: "Home",
+  components: {},
   chart: null,
   mounted() {
-    chart = new Chart(document.getElementById("myChart1"), {
+    this.chart = new Chart(document.querySelector("#indices"), {
       type: "line",
       data: {
-        datasets: [
-          {
-            label: "1",
+        datasets: [          {
+            label: "上证",
             data: [0, 20, 40, 50],
             borderColor: getRandomColor(),
-          },
-          {
-            label: "2",
-            data: [50, 40, 20, 0],
+          },          {
+            label: "上证",
+            data: [0, 20, 40, 50],
             borderColor: getRandomColor(),
-          },
+          },          {
+            label: "上证",
+            data: [0, 20, 40, 50],
+            borderColor: getRandomColor(),
+          }
         ],
-        labels: ["January", "February", "March", "April"],
+        labels: ["1", "2", "3", "4"],
       },
       options: {
+        maintainAspectRatio:false,
         tooltips: {
           mode: "index",
           intersect: false,
@@ -46,27 +52,8 @@ export default {
         onHover: (event) => {},
       },
     });
-  },
 
-  name: "HelloWorld",
-  props: [],
+    document.querySelector('#indices').style.height = '300px'
+  },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
